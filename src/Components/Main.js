@@ -2,7 +2,7 @@ import React from 'react'
 import ItemList from './ItemList'
 import Checkboxes from './Checkboxes'
 import {connect}  from 'react-redux'
-import { addBasket } from '../actions/addAction'
+import { addBasket } from '../actions/addBasket'
 
 const Main = () => {
     return (

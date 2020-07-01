@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import { Card, Icon, Image } from 'semantic-ui-react'
 import LoaderSpinner from './LoaderSpinner'
 import { firestoreConnect } from 'react-redux-firebase'
-import { getBasket } from '../actions/getAction';
+import { addBasket } from '../actions/addBasket';
 
 // import products from '../products.json'
 
@@ -28,7 +28,7 @@ class ItemList extends React.Component {
                     </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                    <a onClick={this.props.addBasket} href="javascript:void(0);">
+                    <a onClick={() => this.props.addBasket(product)} href="javascript:void(0);">
                         <Icon name='plus circle' />
                         Agregar
                     </a>
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {getBasket}),
+    connect(mapStateToProps, { addBasket }),
     firestoreConnect([
         { collection: 'products' }
     ])

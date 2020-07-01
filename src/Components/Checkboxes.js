@@ -2,7 +2,7 @@ import React from 'react'
 import { Checkbox, Form } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
-import { addBasket } from '../actions/addAction'
+import { addBasket } from '../actions/addBasket'
 
 class CheckboxFilter extends React.Component {
     state = {}
