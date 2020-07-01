@@ -1,69 +1,70 @@
 import React from 'react'
+import { compose } from 'redux'
 import { Card, Icon, Image } from 'semantic-ui-react'
+import LoaderSpinner from './LoaderSpinner'
+import { firestoreConnect } from 'react-redux-firebase'
+import { getBasket } from '../actions/getAction';
 
-import donut from '../images/donut.jpg'
+// import products from '../products.json'
+
+import { connect } from 'react-redux'
 
 class ItemList extends React.Component {
+
+    renderItems = product => {
+        return (
+            <div key={product.id} className="ui column">
+                <Card>
+                    <Image src={product.image} wrapped ui={false} />
+                    <Card.Content>
+                    <Card.Header>{product.title}</Card.Header>
+                    <Card.Meta>{`Categoria: ${product.category}`}</Card.Meta>
+                    <Card.Description>
+                        {product.description1}<br />
+                        {product.description2}
+                    </Card.Description>
+                    <Card.Description>
+                        {`Precio: ${product.price} Gs.`}
+                    </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                    <a onClick={this.props.addBasket} href="javascript:void(0);">
+                        <Icon name='plus circle' />
+                        Agregar
+                    </a>
+                    </Card.Content>
+                </Card>
+            </div>
+        )
+    }
+
     render() {
+        
+        const { products } = this.props
+
+        if (!products) { 
+            return <LoaderSpinner />; 
+        }
+        
         return(
             <div className="ui three column doubling stackable grid">
-                <div className="ui column">
-                    <Card>
-                        <Image src={donut} wrapped ui={false} />
-                        <Card.Content>
-                        <Card.Header>Donut 1</Card.Header>
-                        <Card.Meta>Joined in 2016</Card.Meta>
-                        <Card.Description>
-                            Daniel is a comedian living in Nashville.
-                        </Card.Description>
-                        </Card.Content>
-                        <Card.Content extra>
-                        <a href="#">
-                            <Icon name='plus circle' />
-                            Agregar
-                        </a>
-                        </Card.Content>
-                    </Card>
-                </div>
-                <div className="ui column">
-                    <Card>
-                        <Image src={donut} wrapped ui={false} />
-                        <Card.Content>
-                        <Card.Header>Donut 1</Card.Header>
-                        <Card.Meta>Joined in 2016</Card.Meta>
-                        <Card.Description>
-                            Daniel is a comedian living in Nashville.
-                        </Card.Description>
-                        </Card.Content>
-                        <Card.Content extra>
-                        <a href="#">
-                            <Icon name='plus circle' />
-                            Agregar
-                        </a>
-                        </Card.Content>
-                    </Card>
-                </div>
-                <div className="ui column">
-                    <Card>
-                        <Image src={donut} wrapped ui={false} />
-                        <Card.Content>
-                        <Card.Header>Donut 1</Card.Header>
-                        <Card.Meta>Joined in 2016</Card.Meta>
-                        <Card.Description>
-                            Daniel is a comedian living in Nashville.
-                        </Card.Description>
-                        </Card.Content>
-                        <Card.Content extra>
-                        <a href="#">
-                            <Icon name='plus circle' />
-                            Agregar
-                        </a>
-                        </Card.Content>
-                    </Card>
-                </div>
+                {products.map(product => {
+                    return this.renderItems(product)
+                })}
             </div>
         )
     }
 }
 
-export default ItemList
+const mapStateToProps = (state) => {
+    return {
+        products: state.firestore.ordered.products
+    }
+}
+
+export default compose(
+    connect(mapStateToProps, {getBasket}),
+    firestoreConnect([
+        { collection: 'products' }
+    ])
+)(ItemList)

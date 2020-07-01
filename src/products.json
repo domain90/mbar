@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Donut 1",
+        "image": "donut.jpg",
+        "category": "desserts",
+        "price": 10000
+    },
+    {
+        "name": "Donut 2",
+        "image": "donut.jpg",
+        "category": "desserts",
+        "price": 8000
+    },
+    {
+        "name": "Donut 3",
+        "image": "donut.jpg",
+        "category": "desserts",
+        "price": 6000
+    },
+    {
+        "name": "Sandwich 1",
+        "image": "sandwich.jpg",
+        "category": "sandwich",
+        "price": 9000
+    },
+    {
+        "name": "Sandwich 2",
+        "image": "sandwich.jpg",
+        "category": "sandwich",
+        "price": 15000
+    },
+    {
+        "name": "Sandwich 3",
+        "image": "sandwich.jpg",
+        "category": "sandwich",
+        "price": 23000
+    },
+    {
+        "name": "Sushi 1",
+        "image": "sushi.jpg",
+        "category": "sushi",
+        "price": 50000
+    },
+    {
+        "name": "Sushi 2",
+        "image": "sushi.jpg",
+        "category": "sushi",
+        "price": 66000
+    }
+]

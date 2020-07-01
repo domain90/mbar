@@ -1,0 +1,4 @@
+export const ADD_PRODUCT_BASKET = 'ADD_PRODUCT_BASKET'
+export const GET_PRODUCT_BASKET = 'GET_PRODUCT_BASKET'
+export const ADD_PRODUCT        = 'ADD_PRODUCT'
+export const ADD_PRODUCT_ERR    = 'ADD_PRODUCT_ERR'
